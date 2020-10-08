@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href= "main.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style>
+    .table-bordered td, .table-bordered th {
+      border: 4px solid white;
+    }
+    .table thead th {
+      vertical-align: middle;
+    }
+    .table th {
+      padding: 0.45rem;
+    }
+  </style>  
+</head>
+<body>
+  <div class= "nav_ bg-light" id= "n_hide" onmouseover="show()" onmouseout= "hide()">
+    <nav class="navbar navbar-light bg-light">
+      <ul class="navbar-nav" style="padding: 10px;">
+        <li class="nav-item">
+          <a class="navbar-brand" href="#">COVID19<br><span>India</span></a>
+        </li> 
+        <li class="nav-item active">
+          <a class="nav-link" href="#"><i class="fas fa-home"></i><span id ="1">Home</span></a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fas fa-book"></i><span id ="1">Blog</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fas fa-book"></i><span id ="1">About</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="far fa-moon"></i><span id ="1" style="font-size: 10px; font-weight: bold;">A croudsourced initiative</span></a>
+        </li>
+      </ul>
+      <div style= "margin-bottom: -1.5rem; margin-top: auto;">English</div>
+    </nav>
+  </div>
+  <div class= "row container">
+    <div class= "col table_body">
+      <div class= "sch_center">
+        <div class="search">
+          <p>Search your district and state</p>
+          <div class= "search-box">
+            <div class= "search_button"> 
+              <span><i class="fa fa-search" aria-hidden="true"></i></span>
+            </div>
+            <input id= "input" type= "text" value= "" onclick= "hide_search()">
+          </div>
+        </div>
+        <div class= "hide_search" id= "hide_con">
+          <ul id= "dis_list" style= "margin-right: 83px;"> <span id= "list">District</span>
+          </ul>
+          <ul id= "state_list"> <span id= "list">State/UT </span>
+          </ul>
+        </div>
+      </div> 
+      <br>
+      <div class= "map_card" id= "map_card" style= "display: flex; padding:20px" >
+        <script type= "text/template" id="total_data">
+        {{#data}}
+          <div class= "map_card_card1 active">
+            <p>Confirmed</p>
+            <p>+{{cChanges}}</p>
+            <h5>{{confirmed}}</h5>
+          </div>
+         
+          <div class= "map_card_card2">
+            <p>Active</p>
+            <p style= "visibility:hidden;">h</p>
+            <h5>{{active}}</h5>
+          </div>
+          
+          <div class= "map_card_card3">
+            <p>Recoverd</p>
+            <p>+{{rChanges}}</p>
+            <h5>{{recovered}}</h5>
+          </div>
+        
+          <div class= "map_card_card4">
+            <p>Deceased</p>
+            <p>+{{dchanges}}</p>
+            <h5>{{deaths}}</h5>
+          </div>
+        {{/data}}
+        </script>
+      </div>
+      <div class= "table" style="position: relative; height: auto;">
+        <table class= "table-bordered table-striped">
+          <thead>
+            <th>State/UT</th>
+            <th>Confirmed</th>
+          <!--<th>Active</th>--->
+            <th>Recovered</th>
+            <th>Deceased</th>
+            <th>Tested</th>
+           <!----<th id= "hide_row">Active Ratio</th>--->
+            <th id= "hide_row">Recovery Ratio</th>
+            <th id= "hide_row">Case fatality</th>
+           <!---- <th id= "hide_row">Test Positive Ratio</th>--->
+            <th id= "hide_row">Population</th>
+          </div>
+          </thead>
+          <tbody id= "body"  style="font-size: 14px;"></tbody>
+        </table>
+        <div style= "position: absolute; top: -50px; right: 30px;">
+          <button type="button" id= "hide" class="btn btn-light"  onclick="hide_content()"><i id= "arrow" class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+      <script id="template" type="text/template">
+        {{#result}}
+          <tr>
+            <th>{{state_array }}</th>
+            <td><span id="delta-1">{{delta_confirmed}}</span><br>{{confirmed}}</td>
+           <!----  <td>{{active}}</td>----> 
+            <td><span id= "delta-2">{{delta_recovered}}</span><br>{{recovered}}</td>
+            <td><span id="delta-3">{{delta_deceased}}</span><br>{{deceased}}</td>
+            <td>{{tested}}</td>
+           <!---- <td id= "hide_row" >{{active_ratio}}</td>--->
+            <td id= "hide_row">{{recovery_ratio}}%</td>
+            <td id= "hide_row">{{case_fatality}}%</td>
+           <!----  <td id= "hide_row">{{test_positive}}</td>----> 
+            <td id= "hide_row">{{population}}</td> 
+          </tr>
+        {{/result}}                           
+      </script>
+    </div>
+    <div class= "col" id= "map">
+      <p>ddd</p>
+    </div>
+    <footer>
+      <div class= "name">
+        <a href= ""> COVID19INDIA</a>
+      </div>
+      <p>We stand with everyone fighting on the fontlines</p>
+      <div class= "social_icon">
+        <a href= ""><i class="fab fa-github"></i></a>
+        <a href= ""><i class="fab fa-telegram"></i></a>
+        <a href= ""><i class="fab fa-twitter" ></i></a>
+        <a href= ""><i class="fa fa-envelope"></i></a>
+      </div>
+    </footer>
+  </div> <!-----row----->
+  <script src= "covid.js"></script>
+  
+</body>
+</html>
