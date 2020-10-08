@@ -117,20 +117,30 @@ body * {
   color: #6c757d;
   font-family: $fontFamily;
   font-size: $Fontsize + 2;
+  text-align: center;
 }
 $delta_color: ("1":red, "2": green, "3": #6c757d);
-#body td {
-  color: $fontColor;
-  font-size: $fontColor;
-  @each $name, $delta in $delta_color {
-    #delta-#{$name} {
-      color: $delta;
-      font-size: $fontColor -2;
+#body { 
+  td {
+    color: $fontColor;
+    font-size: $fontColor;
+    @each $name, $delta in $delta_color {
+      #delta-#{$name} {
+        color: $delta;
+        font-size: $fontColor -2;
+      }
     }
+  }
+  th, #tested {
+    padding-top: 33px;
   }
 }
 #hide_row {
   display: none;
+  padding-top: 33px;
+}
+th#hide_row {
+  padding-top: 33px;
 }
 footer {
   color: #6c757d;

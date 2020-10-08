@@ -121,6 +121,7 @@ body * {
   color: #6c757d;
   font-family: "archia";
   font-size: 15px;
+  text-align: center;
 }
 
 #body td {
@@ -139,9 +140,17 @@ body * {
   color: #6c757d;
   font-size: #6c757d -2;
 }
+#body th, #body #tested {
+  padding-top: 33px;
+}
 
 #hide_row {
   display: none;
+  padding-top: 33px;
+}
+
+th#hide_row {
+  padding: 33px;
 }
 
 footer {
