@@ -1,56 +1,28 @@
 $Fontsize: 13px;
 $fontColor: #6c757d;
 $fontFamily: "archia";
-body {
-  display: flex;
-}
 body * {
   font-family: $fontFamily;
 }
-.nav_ {
-  min-height: 5rem;
-  width: 100px;
-  .navbar { 
-    color: $fontColor;
-    .navbar-brand {
-      font-size: small;
-      span {
-        color:blue; 
-        font-size: $Fontsize+1;
-      }
-    }
-    .nav-link {
-      i {
-        color: $fontColor;
-        cursor: pointer;
-        font-size: $Fontsize + 11; 
-      }
-      span {
-        visibility: hidden;
-      }
-    }
-
-  }
-}
 .sch_center {
-  margin-left: auto; 
-  margin-right: auto; 
+  margin-left: auto;
+  margin-right: auto;
   width: 70%;
 }
 .search {
-  color: $fontColor; 
-  margin-top:95px;
+  color: $fontColor;
+  margin-top: 95px;
   text-align: center;
   p {
-    font-size: .75rem;
+    font-size: 0.75rem;
   }
   .search-box {
     background-color: white;
     border-radius: 5px;
-    box-shadow: 0 10px 35px rgba(0,0,0,.1);
-    padding:19px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
+    padding: 19px;
     position: relative;
-    width: 100%; 
+    width: 100%;
     height: 4rem;
     input {
       background-color: white;
@@ -67,8 +39,8 @@ body * {
       position: absolute;
       top: 20px;
       span {
-        color: #b9babb; 
-        font-size: $Fontsize+9;
+        color: #b9babb;
+        font-size: $Fontsize + 9;
       }
     }
   }
@@ -87,8 +59,8 @@ body * {
       font-family: $fontFamily;
     }
     li:before {
-      content: "–"; 
-    } 
+      content: "–";
+    }
     span {
       color: #4c75f2;
       font-family: $fontFamily;
@@ -96,34 +68,48 @@ body * {
     }
   }
 }
-#hide {
-  float: right;
-  margin-right: -25px;
-}
+
 .table_body {
-  margin-left: 90px;
+  margin-left: 255px;
+  margin-right: 225px;
 }
-.table {
-  margin-top: 40px; 
-  th {
-    text-align: center;
-  }
-  td {
-    text-align: end;
-  }
-}
-.table-bordered th {
-  background-color: rgba(0,0,0,.05);
-  color: #6c757d;
+
+.table-bordered thead th {
+  background-color: rgba(0, 0, 0, 0.05);
+  border: 4px solid white;
+  color: $fontColor;
   font-family: $fontFamily;
-  font-size: $Fontsize + 2;
-  text-align: center;
+  font-size: 16px;
+  text-align: justify;
+  border-bottom: 2px solid #ffffff;
+  vertical-align: inherit;
 }
-$delta_color: ("1":red, "2": green, "3": #6c757d);
-#body { 
-  td {
+
+#body td {
+  vertical-align: bottom;
+}
+#toggle {
+  font-size: 15px;
+  float: right;
+  margin-top: 2;
+  opacity: 0.5;
+}
+$delta_color: (
+  "1": red,
+  "2": green,
+  "3": #6c757d,
+);
+
+#body {
+  td, th {
     color: $fontColor;
-    font-size: $fontColor;
+    border: 3px solid white;
+    font-size: 14px;
+  }
+  td {
+    text-align: right;
+    vertical-align: bottom;
+  }
     @each $name, $delta in $delta_color {
       #delta-#{$name} {
         color: $delta;
@@ -131,19 +117,13 @@ $delta_color: ("1":red, "2": green, "3": #6c757d);
       }
     }
   }
-  th, #tested {
-    padding-top: 33px;
-  }
+
+.dis_list {
+  margin-right: 83px;
 }
-#hide_row {
-  display: none;
-  padding-top: 33px;
-}
-th#hide_row {
-  padding-top: 33px;
-}
+
 footer {
-  color: #6c757d;
+  color: $fontColor;
   display: flex;
   flex-direction: column;
   font-size: $Fontsize;
@@ -153,45 +133,64 @@ footer {
   width: 100%;
   .name a {
     text-align: center;
-    background-color:rgba(0,123,255,.0627451);
-    color: blue
+    background-color: rgba(0, 123, 255, 0.0627451);
+    color: blue;
   }
-  p{
+  p {
     font-weight: bold;
   }
-  .social_icon {
+  .social_iPP {
     font-size: 25px;
-    color: #6c757d;
+    color: $fontColor;
     i {
-      color:#6c757d;
+      color: $fontColor;
     }
   }
 }
-.map_card div{
+.map_card {
+  display: flex; 
+  padding: 15px 0;
+}
+.map_card div {
   border-radius: 10px;
   cursor: pointer;
   font-family: $fontFamily;
   font-size: $fontFamily + 1;
   height: 225px;
   opacity: 1;
-  padding: 40px; 
+  padding: 40px;
   text-align: center;
-   width: 25%;
+  width: 25%;
 }
-$card-background: ("card1":rgba(255, 7, 58, 0.125), "card2" : rgba(0, 123, 255, 0.125), "card3" : rgba(40, 167, 69, 0.125), "card4" :rgba(108, 117, 125, 0.125));
+$card-background: (
+  "card1": rgba(255, 7, 58, 0.125),
+  "card2": rgba(0, 123, 255, 0.125),
+  "card3": rgba(40, 167, 69, 0.125),
+  "card4": rgba(108, 117, 125, 0.125),
+);
 @each $name, $background in $card-background {
-  .map_card_#{$name}.active, .map_card_#{$name}:hover {
+  .map_card_#{$name}.active,
+  .map_card_#{$name}:hover {
     background: $background;
- 
   }
 }
-$card-color: ("card1":red, "card2": blue , "card3": green , "card4":#6c757d);
+$card-color: (
+  "card1": red,
+  "card2": blue,
+  "card3": green,
+  "card4": #6c757d,
+);
 @each $name, $color in $card-color {
   .map_card_#{$name} {
     color: $color;
-    p:first-child {
-      font-weight: 600;
+    p {
+      font-weight: 500;
+    }
+    span {
+      font-weight: bold;
+      font-size: 14px;
+      font-family: monospace;
+      opacity: 0.5;
     }
   }
 }
-
