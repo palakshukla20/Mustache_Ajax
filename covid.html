@@ -39,7 +39,7 @@
         </div><br>
         <div class= "map_card" id= "map_card" style= "display: flex; padding:20px">
           <script type="text/template" id="total_data">
-          {{#TT}}
+          {{#India}}
             <div class= "map_card_card1 active">
               <p>Confirmed</p>
               <span>+{{delta-confirmed}}</span>
@@ -60,10 +60,10 @@
               <p>+{{delta-deceased}}</p>
               <h3>{{deceased}}</h3>
             </div>
-          {{/TT}}
+          {{/India}}
           </script>
         </div>
-        <div class= "table" style= "position: relative; height: auto;">
+        <div class= "table">
           <table class= "table-bordered table-striped">
             <thead>
               <th>State/UT</th>
@@ -76,7 +76,6 @@
               <th>Active Ratio</th>
               <th>Recovery Ratio</th>
               <th>Case fatality</th>
-              <!---- <th id= "hide_row">Test Positive Ratio</th>--->
               <th id="">Population</th>
             </thead>
             <tbody id="body" style="font-size: 14px;">
@@ -105,13 +104,12 @@
             <td>{{active_ratio}}%</td>
             <td>{{recovery-ratio}}%</td>
             <td>{{case-fatality}}% {{^case-fatality}}0{{/case-fatality}}</td>
-           <!----  <td id= "hide_row">{{test_positive}}</td>----> 
             <td id= "">{{population}}</td> 
           </tr>
         {{/result}} 
-        {{#TT}}
+        {{#India}}
         <tr>
-          <th>{{state_name}} {{#notes}}<a href= "#" data-toggle= "tooltip" data-placement= "bottom" title = "{{notes}}">
+          <th>India {{#notes}}<a href= "#" data-toggle= "tooltip" data-placement= "bottom" title = "{{notes}}">
             <i class= "fas fa-info-circle" style= "color: #6c757d; padding-left: 2px"></i></a>{{/notes}}
           </th>
           <td><span id= "delta-1">
@@ -134,7 +132,7 @@
           <!----  <td id= "hide_row">{{test_positive}}</td>----> 
           <td id= "">{{population}}</td> 
         </tr>     
-        {{/TT}}                     
+        {{/India}}                     
       </script>
     </div>
     <footer>
