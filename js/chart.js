@@ -38,9 +38,7 @@ var Chart = /** @class */ (function () {
                     type: "line",
                     dataPoints: dataPoint,
                     mouseover: function onMouseover(e) {
-                        var text = $("<div style= 'postion: absolute; width: 100px'><span>" + //new Date(e.dataPoint.x)
-                            "date" + "</span><br><span>" + e.dataPoint.y +
-                            "</span></div>");
+                        var text = $("<div><span> Date </span><br><span> " + e.dataPoint.y + " </span></div>");
                         $(id).html(text);
                     },
                     connectNullData: true,
@@ -50,10 +48,7 @@ var Chart = /** @class */ (function () {
         chart.render();
     };
     Chart.prototype.getDataPoints = function (x, y) {
-        return {
-            x: x,
-            y: y
-        };
+        return { x: x, y: y };
     };
     return Chart;
 }());
@@ -68,16 +63,16 @@ function showChart(state) {
     $.getJSON("https://api.covid19india.org/v4/min/timeseries.min.json", function (data) {
         var chart = new Chart();
         $.each(data, function (key, val) {
-            if (key == state) {
+            if (key === state) {
                 $.each(val.dates, function (key, val) {
-                    if (new Date(key) < new Date(2020, 9, 16) && new Date(key) > new Date(2020, 8, 17)) {
+                    if (new Date(key) < new Date(2020, 11, 9) && new Date(key) > new Date(2020, 09, 10)) {
                         if (val.total.confirmed) {
                             dataPoint1.push(chart.getDataPoints(new Date(key), val.total.confirmed));
                             dataPoint2.push(chart.getDataPoints(new Date(key), val.total.recovered));
+                            dataPoint4.push(chart.getDataPoints(new Date(key), val.total.tested));
                             if (val.total.deceased) {
                                 dataPoint3.push(chart.getDataPoints(new Date(key), val.total.deceased));
                             }
-                            dataPoint4.push(chart.getDataPoints(new Date(key), val.total.tested));
                         }
                     }
                 });
